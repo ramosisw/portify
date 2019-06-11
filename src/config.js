@@ -5,6 +5,7 @@ export const config = {
     loggedItem: "user",
     homepage: isDevelopment ? "" : "https://ramosisw.github.io/portify",
     spotifyApi: {
+        url: "https://api.spotify.com/v1",
         scope: "user-read-private user-read-email playlist-read-private playlist-modify-public playlist-modify-private user-library-read user-library-modify playlist-read-collaborative",
         redirect_uri: isDevelopment ? "http://localhost:3000/callback" : "https://ramosisw.github.io/callback",
         client_id: "ba0034384cb24045a078ea5ceae26480"
