@@ -1,13 +1,19 @@
+import MuiThemeProvider from '@material-ui/core/styles/MuiThemeProvider';
+import { Router, Route, Switch } from 'react-router-dom';
+import PrivateRoute from './components/PrivateRoute'
+import { createMuiTheme } from '@material-ui/core';
+import { history } from './helpers';
+import { config } from './config';
 import React from 'react';
-import { createMuiTheme } from '@material-ui/core'
-import AppBar from './components/AppBar'
-import MuiThemeProvider from '@material-ui/core/styles/MuiThemeProvider'
-import CssBaseline from '@material-ui/core/CssBaseline'
+import Main from './Main';
+import Login from './Login'
 
 const theme = createMuiTheme({
   palette: {
     type: "dark",
-    //primary: blue,
+    primary: {
+      main: "#2ebd59",
+    },
     //secondary: deepPurple
   },
   typography: {
@@ -18,20 +24,20 @@ const theme = createMuiTheme({
   },
 });
 
-class App extends React.Component {
-
+export default class App extends React.Component {
   render() {
+    console.log(config);
     return (
-      <MuiThemeProvider theme={theme}>
-        <React.Fragment>
-          <CssBaseline />
-          <div className={theme.root}>
-            <AppBar />
-          </div>
-        </React.Fragment>
-      </MuiThemeProvider>
+      <Router history={history}>
+        <MuiThemeProvider theme={theme}>
+          <Route path={config.homepage + "/"}>
+            <Switch>
+              <Route path={config.homepage + "/login"} component={Login} />
+              <PrivateRoute path={config.homepage + "/"} component={Main} />
+            </Switch>
+          </Route>
+        </MuiThemeProvider>
+      </Router>
     );
   }
-}
-
-export default App;
+};

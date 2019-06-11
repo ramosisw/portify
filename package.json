@@ -2,11 +2,16 @@
   "name": "app",
   "version": "0.1.0",
   "private": true,
+  "homepage": "https://ramosisw.github.io/portify",
   "dependencies": {
     "@material-ui/core": "^4.1.0",
     "@material-ui/icons": "^4.1.0",
+    "history": "^4.9.0",
+    "query-string": "^6.7.0",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
+    "react-redux": "^7.1.0",
+    "react-router-dom": "^5.0.1",
     "react-scripts": "3.0.1"
   },
   "scripts": {
@@ -22,6 +27,7 @@
     "production": [
       ">0.2%",
       "not dead",
+      "not ie all",
       "not op_mini all"
     ],
     "development": [
