@@ -1,22 +1,26 @@
 import MuiThemeProvider from '@material-ui/core/styles/MuiThemeProvider';
+import MessageSnackbar from './components/MessageSnackbar';
 import { Router, Route, Switch } from 'react-router-dom';
 import { createMuiTheme } from '@material-ui/core';
-import { history } from './helpers';
-import { config } from './config';
-import React from 'react';
-import { connect } from 'react-redux';
-import Main from './Main';
-import Login from './Login'
 import Snackbar from '@material-ui/core/Snackbar';
-import MessageSnackbar from './components/MessageSnackbar'
+import { alertActions } from './actions';
+import { connect } from 'react-redux';
+import { history } from './helpers';
+import Login from './Login'
+import React from 'react';
+import Main from './Main';
 
 const theme = createMuiTheme({
   palette: {
     type: "dark",
     primary: {
-      main: "#2ebd59",
+      main: "#000",
+      contrastText: "#fff"
     },
-    //secondary: deepPurple
+    secondary: {
+      main: "#2ebd59",
+      contrastText: "#fff"
+    }
   },
   typography: {
     useNextVariants: true,
@@ -27,6 +31,14 @@ const theme = createMuiTheme({
 });
 
 class App extends React.Component {
+
+  handleClose = (reason) => {
+    if (reason === 'clickaway') {
+      return;
+    }
+    this.props.dispatch(alertActions.clear());
+  };
+
   render() {
     const { alert } = this.props;
     return (
@@ -50,10 +62,10 @@ class App extends React.Component {
               />
             </Snackbar>
           }
-          <Route path={config.homepage + "/"}>
+          <Route path={"/"}>
             <Switch>
-              <Route path={config.homepage + "/login"} component={Login} />
-              <Route path={config.homepage + "/"} component={Main} />
+              <Route path={"/login"} component={Login} />
+              <Route path={"/"} component={Main} />
             </Switch>
           </Route>
         </MuiThemeProvider>

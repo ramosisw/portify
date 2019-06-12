@@ -2,6 +2,7 @@ import { config } from '../config';
 
 export function handleResponse(response) {
     return response.text().then(text => {
+        const data = text && JSON.parse(text);
         if (!response.ok) {
             if (response.status === 401) {
                 // remove user from local storage to log user out
@@ -11,8 +12,6 @@ export function handleResponse(response) {
             const error = (data && data.message) || response.statusText;
             return Promise.reject(error);
         }
-        const data = text && JSON.parse(text);
-        console.log(data);
         return data;
     });
 }

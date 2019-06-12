@@ -7,7 +7,6 @@ import ErrorIcon from '@material-ui/icons/Error';
 import InfoIcon from '@material-ui/icons/Info';
 import CloseIcon from '@material-ui/icons/Close';
 import green from '@material-ui/core/colors/green';
-import indigo from '@material-ui/core/colors/indigo';
 import amber from '@material-ui/core/colors/amber';
 import grey from '@material-ui/core/colors/grey';
 import IconButton from '@material-ui/core/IconButton';
@@ -18,19 +17,22 @@ import { withStyles } from '@material-ui/core/styles';
 const styles = theme => ({
     success: {
         backgroundColor: green[600],
+        color: theme.palette.primary.contrastText
     },
     error: {
         backgroundColor: theme.palette.error.dark,
+        color: theme.palette.primary.contrastText
     },
     info: {
         backgroundColor: theme.palette.primary.dark,
+        color: theme.palette.primary.contrastText
     },
     undo: {
         backgroundColor: grey[900],
         color: theme.palette.getContrastText(grey[800]),
     },
     undoButton :{
-        color : indigo[700]
+        color : theme.palette.secondary.contrastText
     },
     warning: {
         backgroundColor: amber[700],
@@ -40,10 +42,10 @@ const styles = theme => ({
     },
     iconVariant: {
         opacity: 0.9,
-        marginRight: theme.spacing.unit,
+        marginRight: theme.spacing(),
     },
     close: {
-        padding: theme.spacing.unit / 2,
+        padding: theme.spacing() / 2,
     },
     message: {
         display: 'flex',
@@ -76,13 +78,13 @@ class MessageSnackbar extends React.Component {
                     </span>
                 }
                 action={[
-                    onUndo && <Button key="undo" className={classes.undoButton} size="small" onClick={onUndo}>
+                    onUndo && <Button key={"undo"} className={classes.undoButton} size={"small"} onClick={onUndo}>
                         UNDO
                     </Button>,
                     <IconButton
-                        key="close"
-                        aria-label="Close"
-                        color="inherit"
+                        key={"close"}
+                        aria-label={"Close"}
+                        color={"inherit"}
                         className={classes.close}
                         onClick={onClose}
                     >

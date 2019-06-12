@@ -3,7 +3,7 @@ const isDevelopment = !process.env.NODE_ENV || process.env.NODE_ENV === 'develop
 export const config = {
     isDevelopment,
     loggedItem: "user",
-    homepage: isDevelopment ? "" : "/portify",
+    baseName: isDevelopment ? "/" : "/portify",
     spotifyApi: {
         url: "https://api.spotify.com/v1",
         scope: "user-read-private user-read-email playlist-read-private playlist-modify-public playlist-modify-private user-library-read user-library-modify playlist-read-collaborative",

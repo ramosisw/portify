@@ -1,15 +1,16 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import { withStyles } from '@material-ui/core/styles';
-import MuiAppBar from '@material-ui/core/AppBar';
-import Container from '@material-ui/core/Container';
-import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
+import { withStyles } from '@material-ui/core/styles';
+import Container from '@material-ui/core/Container';
+import MuiAppBar from '@material-ui/core/AppBar';
+import Toolbar from '@material-ui/core/Toolbar';
 import Button from '@material-ui/core/Button';
-import { Link } from 'react-router-dom';
-import { config } from '../config';
+import Link from '@material-ui/core/Link';
 import { userActions } from '../actions';
+import { Link as RouterLink } from 'react-router-dom';
 import { connect } from 'react-redux';
+import { config } from '../config';
+import PropTypes from 'prop-types';
+import React from 'react';
 
 const styles = theme => ({
   root: {
@@ -21,18 +22,19 @@ const styles = theme => ({
   title: {
     flexGrow: 1,
   },
+  toolbarTitle: {
+    //flex: 1,
+    marginRight: 10
+  },
 });
 
 const LoginLink = React.forwardRef((props, ref) => (
-  <Link innerRef={ref} to={config.homepage + "/login"} {...props} />
+  <RouterLink innerRef={ref} to={"/login"} {...props} />
 ));
-
-
-
 
 class AppBar extends React.Component {
   state = {
-    userLoged : localStorage.getItem(config.loggedItem) ? true : false
+    userLoged: localStorage.getItem(config.loggedItem) ? true : false
   }
 
   componentDidMount() {
@@ -41,20 +43,40 @@ class AppBar extends React.Component {
     }
   }
 
+  onNoMe() {
+
+  }
+
   render() {
     const { classes } = this.props;
-    console.log(this.props.users);
     return (
       <div className={classes.root}>
-        <MuiAppBar position="static">
+        <MuiAppBar position={"static"}>
           <Container>
             <Toolbar>
-              <Typography variant="h6" className={classes.title}>
+              <Typography variant={"h6"} className={classes.title}>
                 Portify
-            </Typography>
+              </Typography>
+              {this.state.userLoged &&
+                <Typography component={"p"}
+                  color={"inherit"}
+                  align={"center"}
+                  noWrap
+                  className={classes.toolbarTitle}
+                >
+                  {this.props.users.display_name}
+                </Typography>
+              }
               {this.state.userLoged ?
-                <Button color="inherit">{this.props.users.display_name}</Button> :
-                <Button color="inherit" component={LoginLink}>Login</Button>
+                <Link
+                  component={LoginLink}
+                  variant={"body2"}
+                  color={"inherit"}
+                  onClick={this.onNoMe}
+                >
+                  It's no me
+                </Link> :
+                <Button color={"inherit"} component={LoginLink} size={"small"}>Login</Button>
               }
             </Toolbar>
           </Container>

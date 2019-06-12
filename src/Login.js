@@ -1,14 +1,14 @@
-import React, { Component } from 'react'
-import Avatar from '@material-ui/core/Avatar';
-import Button from '@material-ui/core/Button';
+import withStyles from '@material-ui/core/styles/withStyles';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import LockIcon from '@material-ui/icons/LockOutlined';
-import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
-import withStyles from '@material-ui/core/styles/withStyles';
-import { config } from './config'
-import queryString from 'query-string';
+import Button from '@material-ui/core/Button';
+import Avatar from '@material-ui/core/Avatar';
+import Paper from '@material-ui/core/Paper';
 import { Redirect } from 'react-router-dom';
+import React, { Component } from 'react'
+import queryString from 'query-string';
+import { config } from './config'
 
 const style = theme => ({
     layout: {
@@ -55,13 +55,13 @@ class Login extends Component {
         this.updateWindowDimensions = this.updateWindowDimensions.bind(this);
         this.onAuthorize = this.onAuthorize.bind(this);
         this.onCallback = this.onCallback.bind(this);
-        window.addEventListener("message", this.onCallback, false);
         localStorage.removeItem(config.loggedItem);
     }
 
     componentDidMount() {
         this.updateWindowDimensions();
         window.addEventListener('resize', this.updateWindowDimensions);
+        window.addEventListener("message", this.onCallback);
     }
 
     componentWillUnmount() {
@@ -75,11 +75,12 @@ class Login extends Component {
     onCallback() {
         if (authWindow)
             authWindow.close();
-        this.setState({ logged: true });
+        if (localStorage.getItem(config.loggedItem))
+            this.setState({ logged: true });
     }
 
     onAuthorize() {
-        const width = 480, height = 640;
+        const width = 500, height = 780;
         const left = (this.state.width / 2) - (width / 2);
         const top = (this.state.height / 2) - (height / 2);
         const set = {
@@ -89,6 +90,7 @@ class Login extends Component {
             response_type: 'token',
             show_dialog: 'true'
         };
+
         authWindow = window.open(
             "https://accounts.spotify.com/authorize?" + queryString.stringify(set),
             "Spotify",
@@ -98,7 +100,7 @@ class Login extends Component {
 
     render() {
         if (this.state.logged) {
-            return <Redirect to={ config.homepage + '/' } />
+            return <Redirect to={'/options'} />
         }
         const { classes } = this.props;
         return (
@@ -106,15 +108,15 @@ class Login extends Component {
                 <CssBaseline />
                 <main className={classes.layout}>
                     <Paper className={classes.paper}>
-                        <Avatar className={classes.avatar}>
+                        <Avatar className={classes.avatar} color={"primary"}>
                             <LockIcon />
                         </Avatar>
-                        <Typography variant="h5">We need your Authorization</Typography>
+                        <Typography variant={"h5"}>We need your Authorization</Typography>
                         <Button
                             onClick={this.onAuthorize}
                             fullWidth
-                            variant="contained"
-                            color="primary"
+                            variant={"contained"}
+                            color={"secondary"}
                             className={classes.submit}>
                             Proced to Authorization
                         </Button>

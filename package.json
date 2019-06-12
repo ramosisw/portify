@@ -2,7 +2,7 @@
   "name": "app",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://ramosisw.github.io/portify/",
+  "homepage": "https://ramosisw.github.io/portify",
   "dependencies": {
     "@material-ui/core": "^4.1.0",
     "@material-ui/icons": "^4.1.0",
@@ -22,7 +22,7 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "react-scripts test",
+    "test": "set CI=true && react-scripts test --reporters=default --reporters=jest-junit --coverage",
     "eject": "react-scripts eject",
     "deploy": "gh-pages -d build"
   },
@@ -41,5 +41,8 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "jest-junit": "^6.4.0"
   }
 }

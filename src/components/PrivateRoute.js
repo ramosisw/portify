@@ -13,7 +13,7 @@ export default class PrivateRoute extends Component {
                     {props.children}
                 </Component>
             ) : (
-                    <Redirect to={config.homepage + '/login' + props.location.search} />
+                    <Redirect to={`/login${props.location.search}`} />
                 )
         )
         } />;
