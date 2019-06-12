@@ -28,7 +28,9 @@ steps:
   displayName: 'npm install and build'
 
 - script: |
-    npm test
+    set $CI=true
+    set CI=true
+    npm run-script test
   displayName: 'npm test'
 
 - task: PublishTestResults@2
