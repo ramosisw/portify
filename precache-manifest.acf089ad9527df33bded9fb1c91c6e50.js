@@ -1,6 +1,6 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "54d35dd07f60b1a3d3ef96030e69b499",
+    "revision": "cde550b1019727c081bfee015b296f58",
     "url": "/portify/index.html"
   },
   {
