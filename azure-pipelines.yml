@@ -28,8 +28,6 @@ steps:
   displayName: 'npm install and build'
 
 - script: |
-    set $CI=true
-    set CI=true
     npm run-script test
   displayName: 'npm test'
 
