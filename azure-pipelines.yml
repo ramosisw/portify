@@ -22,6 +22,6 @@ steps:
 
 - script: |
     git config user.name ramosisw
-    npm run deploy -- -r https://$(github_pat)@github.com/portify.git
+    npm run deploy -- -r https://$(github_pat)@github.com/ramosisw/portify.git
   displayName: 'deploy to github pages'
   condition: and(succeeded(), startsWith(variables['Build.SourceVersionMessage'], '[Deploy]'))
