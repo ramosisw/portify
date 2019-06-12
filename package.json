@@ -22,7 +22,7 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "set CI=true && react-scripts test --watchAll --reporters=default --reporters=jest-junit --coverage",
+    "test": "set CI=true && react-scripts test --reporters=default --reporters=jest-junit --coverage",
     "eject": "react-scripts eject",
     "deploy": "gh-pages -d build"
   },
