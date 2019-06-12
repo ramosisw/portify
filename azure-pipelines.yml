@@ -20,7 +20,7 @@ steps:
     versionSpec: '3.x'
     addToPath: true
     architecture: 'x64'
-  displayName: 'Install Python 2.7'
+  displayName: 'Install Python'
 
 - script: |
     npm install
