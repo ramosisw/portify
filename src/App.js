@@ -1,5 +1,5 @@
 import MuiThemeProvider from '@material-ui/core/styles/MuiThemeProvider';
-import { Router, Route, Switch } from 'react-router-dom';
+import { HashRouter, Route, Switch } from 'react-router-dom';
 import { createMuiTheme } from '@material-ui/core';
 import { history } from './helpers';
 import { config } from './config';
@@ -30,7 +30,7 @@ class App extends React.Component {
   render() {
     const { alert } = this.props;
     return (
-      <Router history={history}>
+      <HashRouter history={history}>
         <MuiThemeProvider theme={theme}>
           {alert.message &&
             <Snackbar
@@ -57,7 +57,7 @@ class App extends React.Component {
             </Switch>
           </Route>
         </MuiThemeProvider>
-      </Router>
+      </HashRouter>
     );
   }
 };
