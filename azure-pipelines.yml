@@ -25,4 +25,3 @@ steps:
     npm run deploy -- -r https://$(github_pat)@github.com/portify.git
   displayName: 'deploy to github pages'
   condition: and(succeeded(), startsWith(variables['Build.SourceVersionMessage'], '[Deploy]'))
-
