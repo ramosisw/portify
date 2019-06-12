@@ -6,7 +6,6 @@ import Typography from '@material-ui/core/Typography';
 import { withStyles } from '@material-ui/core/styles';
 import { Container } from '@material-ui/core';
 import Button from '@material-ui/core/Button';
-import { withRouter } from 'react-router-dom';
 import Grid from '@material-ui/core/Grid';
 import AppBar from './components/AppBar';
 import React, { Component } from 'react';

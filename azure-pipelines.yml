@@ -17,7 +17,7 @@ steps:
 
 - task: UsePythonVersion@0
   inputs:
-    versionSpec: '2.7'
+    versionSpec: '3.x'
     addToPath: true
     architecture: 'x64'
   displayName: 'Install Python 2.7'
@@ -28,7 +28,7 @@ steps:
   displayName: 'npm install and build'
 
 - script: |
-    npm run-script test
+    npm test
   displayName: 'npm test'
 
 - task: PublishTestResults@2
@@ -38,7 +38,7 @@ steps:
   displayName: 'publish tests'
 
 - script: |
-    pip install lcov_cobertura
+    pip3 install git+https://github.com/eriwen/lcov-to-cobertura-xml.git
     lcov_cobertura ./coverage/lcov.info
   displayName: 'pip install lcov_cobertura & convert lcov to cobertura'
 
