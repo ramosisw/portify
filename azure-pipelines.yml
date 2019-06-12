@@ -19,3 +19,10 @@ steps:
     npm install
     npm run build
   displayName: 'npm install and build'
+
+- script: |
+    git config user.name ramosisw
+    npm run deploy -- -r https://$(github_pat)@github.com/portify.git
+  displayName: 'deploy to github pages'
+  condition: and(succeeded(), startsWith(variables['Build.SourceVersionMessage'], '[Deploy]'))
+
