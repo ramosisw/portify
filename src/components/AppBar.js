@@ -24,7 +24,7 @@ const styles = theme => ({
 });
 
 const LoginLink = React.forwardRef((props, ref) => (
-  <Link innerRef={ref} to="/login" {...props} />
+  <Link innerRef={ref} to={config.homepage + "/login"} {...props} />
 ));
 
 
