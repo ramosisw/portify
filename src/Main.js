@@ -13,7 +13,7 @@ import queryString from 'query-string';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { config } from './config';
-import { alertActions } from './actions'
+import { alertActions, userActions } from './actions'
 
 const styles = theme => ({
     appBarSpacer: {
@@ -51,7 +51,8 @@ class Main extends Component {
     }
 
     onExport = () => {
-        this.props.dispatch(alertActions.info("export!"));
+        this.props.dispatch(alertActions.info("Exporting data..."));
+        this.props.dispatch(userActions.exportData());
     }
 
     onImport = () => {
@@ -101,9 +102,7 @@ class Main extends Component {
 
 const mapStateToProps = (state) => {
     const { users } = state;
-    return {
-        users
-    };
+    return { users };
 }
 
 Main.propTypes = {

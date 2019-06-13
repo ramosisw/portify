@@ -64,7 +64,7 @@ class AppBar extends React.Component {
                   noWrap
                   className={classes.toolbarTitle}
                 >
-                  {this.props.users.display_name}
+                  {this.props.user.display_name}
                 </Typography>
               }
               {this.state.userLoged ?
@@ -87,9 +87,9 @@ class AppBar extends React.Component {
 }
 
 const mapStateToProps = (state) => {
-  const { users } = state;
+  const { user } = state;
   return {
-    users
+    user
   };
 }
 

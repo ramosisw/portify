@@ -100,7 +100,7 @@ class Login extends Component {
 
     render() {
         if (this.state.logged) {
-            return <Redirect to={'/options'} />
+            return <Redirect to={'/'} />
         }
         const { classes } = this.props;
         return (

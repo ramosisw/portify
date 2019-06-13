@@ -1,13 +1,11 @@
 import { userConstants } from '../constants';
-import { spotifyService } from '../services';
+import { spotifyService, appService } from '../services';
 import { alertActions } from './alert.actions';
 
 const getMe = () => {
-    console.log("action.getMe");
     return dispatch => {
         dispatch(request());
         spotifyService.getMe().then(data => {
-            console.log("dispatch(success(data));");
             dispatch(success(data));
         }, error => {
             dispatch(failure(error.toString()));
@@ -20,7 +18,24 @@ const getMe = () => {
     function failure(error) { return { type: userConstants.GET_PROFILE_FAILURE, error } }
 }
 
+const exportData = () => {
+    return dispatch => {
+        dispatch(request());
+        appService.exportData().then(data => {
+            dispatch(success(data));
+            appService.downloadJson(`${data.user_id}_v${data.version}.json`, JSON.stringify(data, null, 4));
+        }, error => {
+            dispatch(failure(error));
+        });
+    };
+
+    function request() { return { type: userConstants.EXPORT_REQUEST } }
+    function success(data) { return { type: userConstants.EXPORT_SUCCESS, data } }
+    function failure(error) { return { type: userConstants.EXPORT_FAILURE, error } }
+};
+
 
 export const userActions = {
-    getMe
+    getMe,
+    exportData
 };
