@@ -12,12 +12,16 @@ const _getAllPlaylists = async (options = {}) => {
             total: data.total,
             items: [...playlists.items, ...data.items]
         };
-        if (data.next) return await _getAllPlaylists({
-            playlists,
-            offset: data.offset + data.limit,
-            limit: data.limit
-        });
-        return playlists;
+        if (data.next) {
+            const aux = await _getAllPlaylists({
+                playlists,
+                offset: data.offset + data.limit,
+                limit: data.limit
+            });
+            playlists = {
+                items: [...playlists.items, ...aux.items]
+            }
+        }
     }, error => {
         throw (error);
     });
@@ -30,8 +34,8 @@ const _getAllPlaylists = async (options = {}) => {
  */
 const _getAllPlaylistTracks = async (options = {}) => {
     let { tracks, playlist_id, offset, limit } = options;
+    tracks = tracks || { items: [] };
     await spotifyService.getPlaylistTracks(playlist_id, { offset, limit }).then(async data => {
-        tracks = tracks || { items: [] };
         const filterTracks = data.items.filter(item => {
             return !item.is_local && item.track !== null;
         });
@@ -48,14 +52,18 @@ const _getAllPlaylistTracks = async (options = {}) => {
             items: [...tracks.items, ...playlistTracks]
         };
 
-        if (data.next) return await _getAllPlaylistTracks({
-            tracks,
-            playlist_id,
-            offset: data.offset + data.limit,
-            limit: data.limit
-        });
+        if (data.next) {
+            const aux = await _getAllPlaylistTracks({
+                tracks,
+                playlist_id,
+                offset: data.offset + data.limit,
+                limit: data.limit
+            });
 
-        return tracks;
+            tracks = {
+                items: [...tracks.items, ...aux.items]
+            };
+        }
     }, error => {
         throw (error);
     });
@@ -86,12 +94,16 @@ const _getAllTracks = async (options = {}) => {
             items: [...tracks.items, ...userTracks]
         };
 
-        if (data.next) return await _getAllTracks({
-            tracks,
-            offset: data.offset + data.limit,
-            limit: data.limit
-        });
-        return tracks;
+        if (data.next) {
+            const aux = await _getAllTracks({
+                tracks,
+                offset: data.offset + data.limit,
+                limit: data.limit
+            });
+            tracks = {
+                items: [...tracks.items, ...aux.items]
+            };
+        }
     }, error => {
         throw (error);
     });
@@ -134,7 +146,7 @@ const exportData = async () => {
                 };
             });
 
-            const userPlaylists = await playlists.items.filter(playlist => {
+            const userPlaylists = playlists.items.filter(playlist => {
                 return playlist.owner.id === exportObject.user_id;
             }).map(async playlist => {
                 const { collaborative, id, name, uri } = playlist;
