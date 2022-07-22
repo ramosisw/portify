@@ -43,10 +43,6 @@ class AppBar extends React.Component {
     }
   }
 
-  onNoMe() {
-
-  }
-
   render() {
     const { classes } = this.props;
     return (
@@ -57,6 +53,7 @@ class AppBar extends React.Component {
               <Typography variant={"h6"} className={classes.title}>
                 Portify
               </Typography>
+              <Link to="/about">About</Link>
               {this.state.userLoged &&
                 <Typography component={"p"}
                   color={"inherit"}
@@ -72,7 +69,6 @@ class AppBar extends React.Component {
                   component={LoginLink}
                   variant={"body2"}
                   color={"inherit"}
-                  onClick={this.onNoMe}
                 >
                   It's no me
                 </Link> :
