@@ -1,13 +1,13 @@
 {
   "files": {
-    "main.js": "/portify/static/js/main.f73e70be.chunk.js",
-    "main.js.map": "/portify/static/js/main.f73e70be.chunk.js.map",
+    "main.js": "/portify/static/js/main.475349f1.chunk.js",
+    "main.js.map": "/portify/static/js/main.475349f1.chunk.js.map",
     "runtime~main.js": "/portify/static/js/runtime~main.2aff87f6.js",
     "runtime~main.js.map": "/portify/static/js/runtime~main.2aff87f6.js.map",
-    "static/js/2.fd5515ac.chunk.js": "/portify/static/js/2.fd5515ac.chunk.js",
-    "static/js/2.fd5515ac.chunk.js.map": "/portify/static/js/2.fd5515ac.chunk.js.map",
+    "static/js/2.7bfc4a5f.chunk.js": "/portify/static/js/2.7bfc4a5f.chunk.js",
+    "static/js/2.7bfc4a5f.chunk.js.map": "/portify/static/js/2.7bfc4a5f.chunk.js.map",
     "index.html": "/portify/index.html",
-    "precache-manifest.ca64efea056c0a0e9ca1ec7868958c58.js": "/portify/precache-manifest.ca64efea056c0a0e9ca1ec7868958c58.js",
+    "precache-manifest.85fa1bbfeb4523e2ce0d579c0aba5ca0.js": "/portify/precache-manifest.85fa1bbfeb4523e2ce0d579c0aba5ca0.js",
     "service-worker.js": "/portify/service-worker.js"
   }
 }
